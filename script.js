@@ -1,59 +1,164 @@
-// 1. Menghilangkan layar loading setelah website siap
-window.addEventListener('load', () => {
-  const loadingScreen = document.getElementById('loading');
-  // Beri sedikit jeda agar teks loading terlihat (1 detik)
-  setTimeout(() => {
-    loadingScreen.style.opacity = '0';
-    setTimeout(() => {
-      loadingScreen.style.display = 'none';
-    }, 800); // Waktu transisi menghilang
-  }, 1000);
-});
+// 1. Progress Bar saat Scroll
+window.onscroll = function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("myBar").style.width = scrolled + "%";
+    document.getElementById("progressText").innerText = Math.round(scrolled) + "%";
+};
 
-// Deklarasi variabel musik
-const music = document.getElementById('music');
-const musicBtn = document.getElementById('musicBtn');
-let isPlaying = false;
-
-// 2. Fungsi saat tombol "Begin Our Journey" diklik
-function scrollNext() {
-  // Mainkan musik
-  music.play().then(() => {
-    isPlaying = true;
-    musicBtn.innerHTML = '⏸️'; // Ubah ikon ke pause
-  }).catch((err) => {
-    console.log("Autoplay musik dicegah oleh browser.", err);
-  });
-
-  // Scroll perlahan ke bagian chapter pertama
-  const firstChapter = document.querySelector('.chapter');
-  firstChapter.scrollIntoView({ behavior: 'smooth' });
+// 2. Tombol Begin Journey (Memutar Musik)
+const music = document.getElementById("music");
+function beginJourney() {
+    music.play().catch(e => console.log("Autoplay blocked."));
+    document.querySelector('.timeline-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-// 3. Fungsi tombol musik melayang (Play/Pause)
-musicBtn.addEventListener('click', () => {
-  if (isPlaying) {
-    music.pause();
-    musicBtn.innerHTML = '🎵'; // Ubah ikon ke play
-  } else {
-    music.play();
-    musicBtn.innerHTML = '⏸️'; // Ubah ikon ke pause
-  }
-  isPlaying = !isPlaying;
-});
-
-// 4. Animasi elemen muncul saat di-scroll (Intersection Observer)
+// 3. Animasi Muncul saat Scroll (Intersection Observer)
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-}, { threshold: 0.1 }); // Muncul ketika 10% elemen terlihat di layar
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            // Jika mencapai bagian surat, mulai efek ngetik
+            if(entry.target.id === 'letterSection' && !isTypingStarted) {
+                startTypewriter();
+            }
+            // Jika mencapai ending, mulai slideshow cepat
+            if(entry.target.id === 'endingSection' && !isSlideshowDone) {
+                startRapidSlideshow();
+            }
+        }
+    });
+}, { threshold: 0.2 });
 
-// Menerapkan efek sembunyi/muncul ke semua section
-const sections = document.querySelectorAll('.chapter, .ending');
-sections.forEach((section) => {
-  section.classList.add('hidden'); // Sembunyikan semua elemen di awal
-  observer.observe(section);       // Pantau elemen
+document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
+
+// 4. Modals (Timeline, Lightbox, Arsenal, Secret Letter)
+function showPopup(title, desc) {
+    document.getElementById('tlTitle').innerText = title;
+    document.getElementById('tlDesc').innerText = desc;
+    document.getElementById('timelinePopup').style.display = 'flex';
+}
+function openLightbox(imgSrc, caption) {
+    document.getElementById('lbImg').src = imgSrc;
+    document.getElementById('lbCap').innerText = caption;
+    document.getElementById('lightbox').style.display = 'flex';
+}
+function openArsenalPopup() {
+    document.getElementById('arsenalPopup').style.display = 'flex';
+}
+function openSecretLetter() {
+    document.getElementById('secretPopup').style.display = 'flex';
+}
+function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+}
+
+// 5. Open Letter Typewriter Effect
+const letterText = "Hai sayang.\nSelamat ulang tahun.\nAku tahu beberapa bulan terakhir kita tidak selalu mudah. Kita pernah salah paham. Kita pernah saling menangis.\nTapi di balik semua itu, aku melihat satu hal.\nKamu tidak pernah berhenti berusaha.\nDan itu adalah alasan kenapa aku masih memilihmu setiap hari.";
+let i = 0;
+let isTypingStarted = false;
+
+function startTypewriter() {
+    isTypingStarted = true;
+    const speed = 50; // kecepatan ngetik (ms)
+    function type() {
+        if (i < letterText.length) {
+            document.getElementById("typewriterText").innerHTML += letterText.charAt(i) === '\n' ? '<br><br>' : letterText.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            document.getElementById("heartSignature").classList.add('show');
+        }
+    }
+    type();
+}
+
+// 6. Tombol "NO" yang Lari (Gamifikasi Halaman 7)
+const btnNo = document.getElementById("btnNo");
+btnNo.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    btnNo.style.position = "fixed";
+    btnNo.style.left = `${x}px`;
+    btnNo.style.top = `${y}px`;
 });
+btnNo.addEventListener("click", () => { btnNo.innerHTML = "Tetap YES! 😂"; });
+
+function goToEnding() {
+    document.getElementById("endingSection").scrollIntoView({ behavior: 'smooth' });
+}
+
+// 7. Ending Rapid Slideshow & Confetti
+let isSlideshowDone = false;
+const photos = ["assets/photo1.jpg", "assets/photo2.jpg", "assets/photo3.jpg", "assets/photo4.jpg"]; // Ganti dengan nama fotomu
+function startRapidSlideshow() {
+    isSlideshowDone = true;
+    const imgEl = document.getElementById('rapidSlideshow');
+    imgEl.style.display = 'block';
+    
+    let flashCount = 0;
+    const maxFlashes = 10; // Berapa kali foto berganti cepat
+    
+    const interval = setInterval(() => {
+        imgEl.src = photos[Math.floor(Math.random() * photos.length)];
+        flashCount++;
+        
+        if(flashCount >= maxFlashes) {
+            clearInterval(interval);
+            // Berhenti di foto terbaik (foto terakhir di array, atau sesuaikan)
+            imgEl.src = photos[0]; 
+            // Munculkan teks dan confetti
+            document.getElementById('finalText').classList.add('show');
+            startConfetti();
+            // Volume musik mengecil
+            let vol = 1;
+            let fadeOut = setInterval(() => {
+                if(vol > 0.2) { vol -= 0.1; music.volume = vol; }
+                else { clearInterval(fadeOut); }
+            }, 500);
+        }
+    }, 150); // Berganti setiap 150ms
+}
+
+// Simple JS Confetti
+function startConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    for(let i=0; i<100; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            r: Math.random() * 6 + 2,
+            d: Math.random() * 100, // density
+            color: ['#E8C76A', '#A8B89A', '#FFFDF8', '#FF4D6D'][Math.floor(Math.random() * 4)],
+            tilt: Math.random() * 10
+        });
+    }
+    
+    let angle = 0;
+    setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        angle += 0.01;
+        for(let i=0; i<particles.length; i++) {
+            let p = particles[i];
+            ctx.beginPath();
+            ctx.lineWidth = p.r;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt + p.r, p.y);
+            ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+            ctx.stroke();
+            
+            p.y += Math.cos(angle + p.d) + 1 + p.r/2;
+            p.x += Math.sin(angle);
+            
+            if(p.y > canvas.height) {
+                particles[i] = {x: Math.random() * canvas.width, y: -10, r: p.r, d: p.d, color: p.color, tilt: p.tilt};
+            }
+        }
+    }, 20);
+}
