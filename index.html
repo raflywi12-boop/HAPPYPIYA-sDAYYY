@@ -1,163 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Happy Birthday Piya ❤️</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Piya 🌻</title>
+  
+  <!-- Font Elegan: Playfair Display (Serif) & Poppins (Sans-serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="loading">
+  <!-- Progress Bar di Atas -->
+  <div class="progress-container-top">
+    <div class="progress-bar" id="myBar"></div>
+    <span id="progressText">0%</span>
+  </div>
 
-<h1>🌻</h1>
+  <!-- HALAMAN 1: HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div> <!-- Background Blur Foto -->
+    <div class="hero-content">
+      <h3 class="subtitle">Happy Birthday</h3>
+      <h1 class="title">Alifia 🌻</h1>
+      <p class="hero-text">Today isn't just another day.<br>It's the day the world became<br>a better place.</p>
+      <div class="scroll-indicator">↓</div>
+      <button class="btn-elegant" onclick="beginJourney()">Begin Journey</button>
+    </div>
+  </section>
 
-<p>Preparing Our Journey...</p>
+  <!-- HALAMAN 2: TIMELINE -->
+  <section class="chapter timeline-section hidden">
+    <h2>Our Story</h2>
+    <div class="timeline">
+      <div class="timeline-item" onclick="showPopup('First Chat', 'Berawal dari dua orang asing yang canggung, namun entah kenapa obrolan itu terus mengalir.')">
+        <div class="timeline-dot"></div>
+        <p>First Chat</p>
+      </div>
+      <div class="timeline-item" onclick="showPopup('First Call', 'Mendengar suaramu untuk pertama kalinya. Jauh lebih menenangkan dari yang kubayangkan.')">
+        <div class="timeline-dot"></div>
+        <p>First Call</p>
+      </div>
+      <div class="timeline-item" onclick="showPopup('First Meet', 'Mata kita akhirnya bertemu. Dan saat itu aku tahu, ini awal dari sesuatu yang panjang.')">
+        <div class="timeline-dot"></div>
+        <p>First Meet</p>
+      </div>
+      <div class="timeline-item highlight" onclick="showPopup('27 December ❤️', 'Hari dimana aku resmi memanggilmu pacarku. Terima kasih sudah memilih aku.')">
+        <div class="timeline-dot special-dot"></div>
+        <p>Officially Together<br><span>27 December ❤️</span></p>
+      </div>
+      <div class="timeline-item" onclick="showPopup('Today', 'Selamat ulang tahun, Piya. Hari ini adalah tentang merayakanmu.')">
+        <div class="timeline-dot"></div>
+        <p>Today<br><span>Happy Birthday</span></p>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <!-- HALAMAN 3: OUR JOURNEY -->
+  <section class="chapter journey-section hidden">
+    <h2>Our Journey 🚗</h2>
+    <div class="counter">
+      <p>Together Since</p>
+      <h3>27 December</h3>
+    </div>
+    <hr class="divider">
+    <p class="cities-title">Cities We've Explored</p>
+    <div class="cities">
+      <div class="city hidden">📍 Semarang</div>
+      <div class="city hidden">📍 Yogyakarta</div>
+      <div class="city hidden">📍 Solo</div>
+      <p class="city-more hidden">(and many more to come...)</p>
+    </div>
+    <hr class="divider">
+    <div class="infinity">∞</div>
+    <p>Dreams We'll Chase Together</p>
+  </section>
 
-<section class="hero">
+  <!-- HALAMAN 4: GALLERY -->
+  <section class="chapter gallery-section hidden">
+    <h2>Memories Captured</h2>
+    <div class="polaroid-gallery">
+      <div class="polaroid" onclick="openLightbox('assets/photo1.jpg', 'Jogja.\nHari dimana aku sadar, aku selalu nyaman kalau sama kamu.')">
+        <img src="assets/photo1.jpg" alt="Memory 1">
+        <p>Jogja.</p>
+      </div>
+      <div class="polaroid" onclick="openLightbox('assets/photo2.jpg', 'Senyummu di hari itu adalah favoritku.')">
+        <img src="assets/photo2.jpg" alt="Memory 2">
+        <p>Our Smile.</p>
+      </div>
+    </div>
+  </section>
 
-<h1>Happy Birthday</h1>
+  <!-- HALAMAN 5: THINGS I LOVE -->
+  <section class="chapter love-section hidden">
+    <h2>Things I Love About You</h2>
+    <div class="flip-container">
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">🌻<br>Your Smile</div>
+          <div class="flip-card-back">Senyummu adalah penawar terbaik untuk hari-hariku yang lelah.</div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">🤍<br>Your Kindness</div>
+          <div class="flip-card-back">Cara kamu memperlakukan orang lain membuatku sangat bangga padamu.</div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">📚<br>Your Curiosity</div>
+          <div class="flip-card-back">Aku suka melihat semangatmu saat mempelajari hal-hal baru.</div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">✨<br>Your Effort</div>
+          <div class="flip-card-back">Kamu tidak pernah menyerah pada kita. Terima kasih untuk usahamu.</div>
+        </div>
+      </div>
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">🌱<br>Growing Together</div>
+          <div class="flip-card-back">Cara kamu tidak pernah berhenti bertumbuh menjadi versi dirimu yang lebih baik.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h2>My Piya ❤️</h2>
+  <!-- HALAMAN 6: OPEN LETTER -->
+  <section class="chapter letter-section hidden" id="letterSection">
+    <h2>An Open Letter</h2>
+    <div class="typewriter-container">
+      <p id="typewriterText"></p>
+    </div>
+    <div class="heart-signature hidden" id="heartSignature">❤️</div>
+  </section>
 
-<p>
-Thank you for existing.
-</p>
+  <!-- HALAMAN 7: FUTURE (Gamification) -->
+  <section class="chapter future-section hidden" id="future">
+    <div class="stars"></div>
+    <h1>The Adventures We Haven't Lived Yet</h1>
+    <div class="bucket-list">
+      <div class="list-item">☐ Menjelajahi Bali bersama</div>
+      <div class="list-item" onclick="openArsenalPopup()">☐ Menonton pertandingan Arsenal secara langsung ⚽ <span class="stadium-icon">🏟️</span></div>
+      <div class="list-item">☐ Membangun rumah kecil yang hangat</div>
+      <div class="list-item">☐ Tua bersama</div>
+    </div>
+    
+    <div class="progress-container">
+      <div class="progress-item"><span>🏠 Rumah</span><span class="bar">□□□□□□□□□</span></div>
+      <div class="progress-item"><span>⚽ Arsenal</span><span class="bar">□□□□□□□□□</span></div>
+      <div class="progress-item"><span>❤️ Growing Together</span><span class="bar">■■■■□□□□□</span></div>
+    </div>
 
-<button onclick="scrollNext()">
-Begin Our Journey
-</button>
+    <div class="question-box">
+      <h3>Will you continue exploring the world with me?</h3>
+      <div class="buttons">
+        <button id="btnYes" onclick="goToEnding()">❤️ YES</button>
+        <button id="btnNo">NO</button>
+      </div>
+    </div>
+  </section>
 
-</section>
+  <!-- HALAMAN 8: ENDING -->
+  <section class="ending hidden" id="endingSection">
+    <!-- Slideshow Cepat -->
+    <img id="rapidSlideshow" src="" class="rapid-img" style="display: none;">
+    
+    <div class="final-text hidden" id="finalText">
+      <h2>Happy Birthday,<br>My Piya.</h2>
+      <p>Thank you for choosing me.</p>
+      <p>I promise I'll keep choosing you.</p>
+      <p>Today.<br>Tomorrow.<br>Always.</p>
+      <p class="final-heart">❤️</p>
+      
+      <!-- Surat Tersembunyi (Hidden Envelope) -->
+      <div class="hidden-envelope" onclick="openSecretLetter()">
+        ✉️ Open when you're ready
+      </div>
+    </div>
+  </section>
 
-<section class="chapter">
+  <!-- ALL POPUPS & MODALS -->
+  <!-- 1. Timeline Popup -->
+  <div id="timelinePopup" class="modal"><div class="modal-content"><h3 id="tlTitle"></h3><p id="tlDesc"></p><button onclick="closeModal('timelinePopup')">Close</button></div></div>
+  <!-- 2. Polaroid Lightbox -->
+  <div id="lightbox" class="modal"><div class="modal-content"><img id="lbImg" src=""><p id="lbCap"></p><button onclick="closeModal('lightbox')">Close</button></div></div>
+  <!-- 3. Arsenal Popup -->
+  <div id="arsenalPopup" class="modal"><div class="modal-content"><h3 style="color:#d10020;">Emirates Stadium 🏟️</h3><p>Status: 🔒 <strong>Locked</strong></p><p style="font-size:0.9rem;">Waiting for Rafly & Piya to unlock this dream.</p><button onclick="closeModal('arsenalPopup')">Close</button></div></div>
+  <!-- 4. Secret Letter Popup -->
+  <div id="secretPopup" class="modal"><div class="modal-content secret-paper"><p>Tulis surat panjangmu dari hati ke hati di sini, Rafly. Bebas sepanjang apapun...</p><button onclick="closeModal('secretPopup')">Tutup</button></div></div>
 
-<h1>How It Started</h1>
+  <!-- Audio -->
+  <audio id="music" loop><source src="assets/music.mp3" type="audio/mpeg"></audio>
 
-<p>
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
 
-Aku masih ingat bagaimana semuanya dimulai.
-
-Dari dua orang asing.
-
-Menjadi dua orang yang saling menunggu chat.
-
-Menjadi dua orang yang saling menyayangi.
-
-</p>
-
-<img src="assets/photo1.jpg">
-
-</section>
-
-<section class="chapter">
-
-<h1>Little Moments</h1>
-
-<div class="gallery">
-
-<img src="assets/photo1.jpg">
-
-<img src="assets/photo2.jpg">
-
-<img src="assets/photo3.jpg">
-
-<img src="assets/photo4.jpg">
-
-</div>
-
-</section>
-
-<section class="chapter">
-
-<h1>Things I Love About You</h1>
-
-<div class="cards">
-
-<div class="card">
-🌻
-<p>Kamu selalu mau belajar menjadi lebih baik.</p>
-</div>
-
-<div class="card">
-📚
-<p>Aku suka melihat semangatmu belajar.</p>
-</div>
-
-<div class="card">
-😊
-<p>Tawamu selalu bikin hariku lebih tenang.</p>
-</div>
-
-<div class="card">
-❤️
-<p>Terima kasih sudah bertahan bersamaku.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="chapter">
-
-<h1>An Open Letter</h1>
-
-<p>
-
-Happy Birthday sayang.
-
-Terima kasih karena telah menjadi rumah untuk segala cerita.
-
-Terima kasih telah mengajarkanku arti memahami.
-
-Semoga semua doa yang kamu panjatkan hari ini satu per satu dikabulkan.
-
-Aku bangga memilikimu.
-
-Aku akan selalu memilihmu.
-
-❤️
-
-</p>
-
-</section>
-
-<section class="ending">
-
-<h1>I Still Choose You.</h1>
-
-<p>
-
-Happy Birthday My Love.
-
-</p>
-
-</section>
-
-<audio id="music" loop>
-
-<source src="assets/music.mp3">
-
-</audio>
-
-<button id="musicBtn">
-🎵
-</button>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
-
 </html>
