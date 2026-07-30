@@ -1,184 +1,177 @@
-*{
+/* Mengimpor Font Romantis untuk Judul dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap');
 
-margin:0;
-padding:0;
-box-sizing:border-box;
-
-font-family:Poppins;
-
+/* Pengaturan Dasar & Tema Warna */
+:root {
+  --primary-color: #ff4d6d; /* Merah muda romantis */
+  --bg-color: #fff0f3; /* Latar belakang pink pastel lembut */
+  --text-color: #590d22; /* Warna teks gelap agar mudah dibaca */
 }
 
-body{
-
-background:#faf8f2;
-color:#222;
-
-overflow-x:hidden;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-section{
-
-min-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-flex-direction:column;
-
-padding:70px;
-
-text-align:center;
-
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow-x: hidden;
 }
 
-.hero{
-
-background:linear-gradient(180deg,#fff,#f6f1dd);
-
+/* Tipografi Judul */
+h1, h2 {
+  font-family: 'Dancing Script', cursive;
+  color: var(--primary-color);
+  margin-bottom: 15px;
 }
 
-.hero h1{
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+p { font-size: 1.1rem; line-height: 1.6; margin-bottom: 15px; }
 
-font-size:65px;
-
+/* Layar Loading */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease;
 }
 
-.hero h2{
-
-margin-top:10px;
-
-font-size:40px;
-
-color:#d19b00;
-
+#loading h1 {
+  animation: pulse 1.5s infinite;
 }
 
-.hero button{
-
-margin-top:40px;
-
-padding:15px 40px;
-
-border:none;
-
-border-radius:40px;
-
-cursor:pointer;
-
-font-size:18px;
-
+/* Bagian Awal (Hero) & Akhir (Ending) */
+.hero, .ending, .chapter {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.chapter h1{
-
-margin-bottom:30px;
-
-font-size:42px;
-
+/* Tombol Mulai (Begin Our Journey) */
+button {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: white;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-top: 20px;
 }
 
-.chapter p{
-
-max-width:700px;
-
-line-height:2;
-
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
 }
 
-.chapter img{
-
-margin-top:30px;
-
-width:300px;
-
-border-radius:20px;
-
-box-shadow:0 20px 40px rgba(0,0,0,.15);
-
+/* Gambar Tunggal di Section */
+.chapter > img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-top: 20px;
 }
 
-.gallery{
-
-display:grid;
-
-grid-template-columns:repeat(2,250px);
-
-gap:20px;
-
+/* Galeri Foto (Grid Layout) */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.gallery img{
-
-width:250px;
-
-height:320px;
-
-object-fit:cover;
-
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
 }
 
-.cards{
-
-display:flex;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
+.gallery img:hover {
+  transform: scale(1.05);
 }
 
-.card{
-
-width:250px;
-
-padding:30px;
-
-background:white;
-
-border-radius:20px;
-
-box-shadow:0 15px 30px rgba(0,0,0,.08);
-
-transition:.3s;
-
+/* Kartu (Things I Love About You) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
 }
 
-.card:hover{
-
-transform:translateY(-10px);
-
+.card {
+  background: white;
+  padding: 25px 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
 }
 
-.ending{
-
-background:black;
-
-color:white;
-
+.card:hover {
+  transform: translateY(-10px);
 }
 
-#musicBtn{
+.card p { margin-bottom: 0; font-size: 1rem; }
 
-position:fixed;
+/* Tombol Musik Melayang */
+#musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  z-index: 1000;
+  margin-top: 0;
+}
 
-bottom:30px;
+/* Kelas Animasi Scroll (Digunakan oleh Javascript) */
+.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease-out;
+}
 
-right:30px;
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-width:60px;
-
-height:60px;
-
-border-radius:50%;
-
-font-size:25px;
-
-cursor:pointer;
-
+/* Animasi Detak untuk Bunga di Loading */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
