@@ -17,7 +17,7 @@ body {
 
 h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 
-/* Progress Bar Apple Style */
+/* Progress Bar */
 .progress-container-top {
   position: fixed; top: 0; left: 0; width: 100%; height: 5px;
   background: rgba(0,0,0,0.05); z-index: 9999;
@@ -25,33 +25,26 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 .progress-bar { height: 100%; background: var(--sage); width: 0%; transition: width 0.2s; }
 #progressText { position: fixed; top: 10px; right: 15px; font-size: 0.8rem; font-weight: bold; color: var(--sage); z-index: 9999; }
 
-/* Global Section Styling */
-.chapter, .ending, .hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
+/* Global Section Styling (Kecuali Hero) */
+.chapter, .ending {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
   text-align: center; padding: 60px 20px; max-width: 600px; margin: 0 auto;
 }
 
-/* HERO SECTION */
-.hero { 
-  /* Kita hapus tulisan 'position: relative;' agar background bisa full layar */
-  color: var(--black); 
+/* HERO SECTION (Perbaikan Full Screen) */
+.hero {
+  position: relative; width: 100vw; height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
 }
 
 .hero-bg {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100vw;  /* Membuat foto selebar layar penuh */
-  height: 100vh; /* Membuat foto setinggi layar penuh */
-  background-image: url('assets/photo1.jpg'); 
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.4;  /* Aku tebalkan sedikit agar fotomu lebih jelas terlihat */
-  filter: blur(6px); 
-  z-index: -1;
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('assets/photo1.jpg'); /* FOTO 5 PUNYA KAMU */
+  background-position: center; background-size: cover; background-repeat: no-repeat;
+  opacity: 0.4; filter: blur(6px); z-index: -1;
 }
+
+.hero-content { z-index: 1; }
 .subtitle { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); }
 .title { font-size: 4rem; margin: 10px 0; font-style: italic; }
 .hero-text { font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px; font-style: italic; }
@@ -63,24 +56,12 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 .btn-elegant:hover { background: var(--sage); }
 .scroll-indicator { font-size: 2rem; color: var(--sage); margin-bottom: 20px; animation: bounce 2s infinite; }
 
-/* TIMELINE (Horizontal to Vertical illusion) */
-.timeline {
-  display: flex; flex-direction: column; align-items: center; gap: 30px;
-  margin-top: 40px; position: relative;
-}
-.timeline::before {
-  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 2px; height: 100%; background: var(--sage); z-index: -1;
-}
-.timeline-item {
-  background: white; padding: 10px 20px; border-radius: 20px; cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; position: relative;
-}
+/* TIMELINE */
+.timeline { display: flex; flex-direction: column; align-items: center; gap: 30px; margin-top: 40px; position: relative; }
+.timeline::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: var(--sage); z-index: -1; }
+.timeline-item { background: white; padding: 10px 20px; border-radius: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; position: relative; }
 .timeline-item:hover { transform: scale(1.05); }
-.timeline-dot {
-  width: 15px; height: 15px; background: var(--sage); border-radius: 50%;
-  position: absolute; left: 50%; top: -22px; transform: translateX(-50%);
-}
+.timeline-dot { width: 15px; height: 15px; background: var(--sage); border-radius: 50%; position: absolute; left: 50%; top: -22px; transform: translateX(-50%); }
 .special-dot { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
 .highlight { border: 1px solid var(--gold); }
 .highlight span { color: var(--gold); font-weight: bold; font-size: 0.9rem; }
@@ -94,10 +75,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 
 /* POLAROID GALLERY */
 .polaroid-gallery { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px; }
-.polaroid {
-  background: white; padding: 10px 10px 30px 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transform: rotate(-3deg); cursor: pointer; transition: 0.3s; width: 200px;
-}
+.polaroid { background: white; padding: 10px 10px 30px 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transform: rotate(-3deg); cursor: pointer; transition: 0.3s; width: 200px; }
 .polaroid:nth-child(even) { transform: rotate(4deg); }
 .polaroid:hover { transform: scale(1.05) rotate(0); z-index: 2; }
 .polaroid img { width: 100%; height: 200px; object-fit: cover; }
@@ -108,11 +86,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 .flip-card { background: transparent; height: 100px; perspective: 1000px; cursor: pointer; }
 .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
 .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
-.flip-card-front, .flip-card-back {
-  position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
-  display: flex; align-items: center; justify-content: center; text-align: center;
-  border-radius: 10px; padding: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
+.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; text-align: center; border-radius: 10px; padding: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .flip-card-front { background-color: white; color: var(--black); font-weight: 500; font-size: 1.1rem; }
 .flip-card-back { background-color: var(--sage); color: white; transform: rotateY(180deg); font-size: 0.9rem; font-style: italic; }
 
@@ -121,22 +95,23 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 .typewriter-container { text-align: left; font-family: 'Playfair Display', serif; font-size: 1.1rem; line-height: 1.8; min-height: 250px;}
 .heart-signature { font-size: 2rem; margin-top: 30px; }
 
-/* FUTURE (Night Sky Style integrated) */
-.future-section { background: var(--black); color: var(--ivory); border-radius: 20px; margin-top: 50px; overflow: hidden; position: relative; }
+/* FUTURE SECTION */
+.future-section { background: var(--black); color: var(--ivory); border-radius: 20px; margin-top: 50px; overflow: hidden; position: relative; padding: 60px 20px;}
 .future-section h1 { color: var(--gold); font-size: 2.2rem; }
 .stars { position: absolute; top:0; left:0; width:100%; height:100%; background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.3; animation: starsMove 40s linear infinite; }
-.list-item { font-size: 1.2rem; margin: 15px 0; text-align: left; cursor: pointer; }
-.progress-container { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-top: 30px; text-align: left;}
+.list-item { font-size: 1.2rem; margin: 15px 0; text-align: left; cursor: pointer; z-index: 1; position: relative;}
+.progress-container { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-top: 30px; text-align: left; z-index: 1; position: relative;}
 .progress-item { font-family: monospace; display: flex; justify-content: space-between; margin-bottom: 10px;}
 .progress-item .bar { color: var(--gold); }
+.question-box { z-index: 1; position: relative; margin-top: 40px;}
 .buttons { position: relative; height: 60px; margin-top: 20px; }
 #btnYes { background: var(--gold); color: var(--black); border: none; padding: 10px 30px; font-weight: bold; border-radius: 20px; cursor: pointer;}
 #btnNo { background: #555; color: white; border: none; padding: 10px 30px; border-radius: 20px; position: absolute; left: 50%; margin-left: 20px; transition: 0.2s;}
 
 /* ENDING */
-.ending { background: var(--black); color: var(--ivory); }
+.ending { background: var(--black); color: var(--ivory); position: relative;}
 .ending h2 { color: var(--gold); font-size: 3rem; margin-bottom: 20px; }
-.final-text { z-index: 10; font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 2; }
+.final-text { z-index: 10; font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 2; position: relative;}
 .final-heart { font-size: 3rem; margin-top: 30px; animation: pulse 1.5s infinite; }
 .rapid-img { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; opacity: 0.3; z-index: 1;}
 .hidden-envelope { margin-top: 50px; font-family: 'Poppins', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.5); cursor: pointer; border: 1px solid rgba(255,255,255,0.3); padding: 10px 20px; border-radius: 20px; transition: 0.3s; }
@@ -144,7 +119,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 
 /* MODALS */
 .modal { display: none; position: fixed; top:0; left:0; width:100vw; height:100vh; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 10000; }
-.modal-content { background: var(--ivory); padding: 30px; border-radius: 15px; text-align: center; max-width: 350px; color: var(--black); }
+.modal-content { background: var(--ivory); padding: 30px; border-radius: 15px; text-align: center; max-width: 350px; color: var(--black); position: relative;}
 .modal-content button { margin-top: 20px; padding: 8px 20px; border: none; background: var(--sage); color: white; border-radius: 10px; cursor: pointer;}
 #lbImg { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 .secret-paper { background: #fdf6e3; font-family: 'Playfair Display', serif; font-style: italic; text-align: left; line-height: 1.8; }
@@ -156,5 +131,5 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--black); }
 @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.2);} 100% {transform: scale(1);} }
 @keyframes starsMove { from {background-position: 0 0;} to {background-position: -500px 500px;} }
 
-/* Confetti Canvas */
+/* Confetti */
 .confetti-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9998; }
