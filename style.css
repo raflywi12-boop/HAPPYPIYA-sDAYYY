@@ -1,3 +1,12 @@
+:root {
+  --ivory: #FFFDF8;
+  --gold: #E8C76A;
+  --sage: #A8B89A;
+  --black: #2D2D2D;
+  --text-dark: #333333;
+}
+
+
 // 1. Progress Bar
 window.onscroll = function() {
     let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
