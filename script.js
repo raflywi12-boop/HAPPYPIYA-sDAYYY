@@ -107,7 +107,7 @@ function startRapidSlideshow() {
         if(flashCount >= maxFlashes) {
             clearInterval(interval);
             // FOTO YANG MUNCUL TERAKHIR SAAT SLIDESHOW BERHENTI
-            imgEl.src = "photo1.jpg"; 
+            imgEl.src = "photo5.jpg"; 
             
             document.getElementById('finalText').classList.add('show');
             startConfetti();
