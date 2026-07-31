@@ -104,19 +104,17 @@ function startRapidSlideshow() {
         imgEl.src = photos[Math.floor(Math.random() * photos.length)];
         flashCount++;
         
-        if(flashCount >= maxFlashes) {
+      if(flashCount >= maxFlashes) {
             clearInterval(interval);
-            // Berhenti di foto terbaik (foto terakhir di array, atau sesuaikan)
-            imgEl.src = photos[0]; 
-            // Munculkan teks dan confetti
+            imgEl.src = "assets/photo1.jpg"; // Tambahkan assets/ di sini
             document.getElementById('finalText').classList.add('show');
             startConfetti();
-            // Volume musik mengecil
             let vol = 1;
             let fadeOut = setInterval(() => {
                 if(vol > 0.2) { vol -= 0.1; music.volume = vol; }
                 else { clearInterval(fadeOut); }
             }, 500);
+        }
         }
     }, 150); // Berganti setiap 150ms
 }
