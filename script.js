@@ -89,7 +89,9 @@ function goToEnding() {
 
 // 7. Ending Slideshow & Confetti
 let isSlideshowDone = false;
-const photos = ["assets/photo2.jpg", "assets/photo3.jpg", "assets/photo4.jpg"]; 
+// Daftar foto untuk efek kedip cepat sebelum berhenti
+const photos = ["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg"]; 
+
 function startRapidSlideshow() {
     isSlideshowDone = true;
     const imgEl = document.getElementById('rapidSlideshow');
@@ -104,7 +106,9 @@ function startRapidSlideshow() {
         
         if(flashCount >= maxFlashes) {
             clearInterval(interval);
-            imgEl.src = "photo5.jpg"; // Foto terbaik yang berhenti di akhir
+            // FOTO YANG MUNCUL TERAKHIR SAAT SLIDESHOW BERHENTI
+            imgEl.src = "photo1.jpg"; 
+            
             document.getElementById('finalText').classList.add('show');
             startConfetti();
             let vol = 1;
