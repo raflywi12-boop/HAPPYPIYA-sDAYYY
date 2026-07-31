@@ -1,4 +1,4 @@
-// 1. Progress Bar saat Scroll
+// 1. Progress Bar
 window.onscroll = function() {
     let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -7,23 +7,21 @@ window.onscroll = function() {
     document.getElementById("progressText").innerText = Math.round(scrolled) + "%";
 };
 
-// 2. Tombol Begin Journey (Memutar Musik)
+// 2. Begin Journey
 const music = document.getElementById("music");
 function beginJourney() {
     music.play().catch(e => console.log("Autoplay blocked."));
     document.querySelector('.timeline-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-// 3. Animasi Muncul saat Scroll (Intersection Observer)
+// 3. Scroll Animation
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('show');
-            // Jika mencapai bagian surat, mulai efek ngetik
             if(entry.target.id === 'letterSection' && !isTypingStarted) {
                 startTypewriter();
             }
-            // Jika mencapai ending, mulai slideshow cepat
             if(entry.target.id === 'endingSection' && !isSlideshowDone) {
                 startRapidSlideshow();
             }
@@ -33,7 +31,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.hidden').forEach(el => observer.observe(el));
 
-// 4. Modals (Timeline, Lightbox, Arsenal, Secret Letter)
+// 4. Popups
 function showPopup(title, desc) {
     document.getElementById('tlTitle').innerText = title;
     document.getElementById('tlDesc').innerText = desc;
@@ -54,14 +52,14 @@ function closeModal(id) {
     document.getElementById(id).style.display = 'none';
 }
 
-// 5. Open Letter Typewriter Effect
+// 5. Typewriter
 const letterText = "Hai sayang.\nSelamat ulang tahun.\nAku tahu beberapa bulan terakhir kita tidak selalu mudah. Kita pernah salah paham. Kita pernah saling menangis.\nTapi di balik semua itu, aku melihat satu hal.\nKamu tidak pernah berhenti berusaha.\nDan itu adalah alasan kenapa aku masih memilihmu setiap hari.";
 let i = 0;
 let isTypingStarted = false;
 
 function startTypewriter() {
     isTypingStarted = true;
-    const speed = 50; // kecepatan ngetik (ms)
+    const speed = 50; 
     function type() {
         if (i < letterText.length) {
             document.getElementById("typewriterText").innerHTML += letterText.charAt(i) === '\n' ? '<br><br>' : letterText.charAt(i);
@@ -74,7 +72,7 @@ function startTypewriter() {
     type();
 }
 
-// 6. Tombol "NO" yang Lari (Gamifikasi Halaman 7)
+// 6. Gamification Button "NO"
 const btnNo = document.getElementById("btnNo");
 btnNo.addEventListener("mouseover", () => {
     const x = Math.random() * (window.innerWidth - 100);
@@ -89,24 +87,24 @@ function goToEnding() {
     document.getElementById("endingSection").scrollIntoView({ behavior: 'smooth' });
 }
 
-// 7. Ending Rapid Slideshow & Confetti
+// 7. Ending Slideshow & Confetti
 let isSlideshowDone = false;
-const photos = ["assets/photo1.jpg", "assets/photo2.jpg", "assets/photo3.jpg", "assets/photo4.jpg"]; // Ganti dengan nama fotomu
+const photos = ["assets/photo2.jpg", "assets/photo3.jpg", "assets/photo4.jpg"]; 
 function startRapidSlideshow() {
     isSlideshowDone = true;
     const imgEl = document.getElementById('rapidSlideshow');
     imgEl.style.display = 'block';
     
     let flashCount = 0;
-    const maxFlashes = 10; // Berapa kali foto berganti cepat
+    const maxFlashes = 10; 
     
     const interval = setInterval(() => {
         imgEl.src = photos[Math.floor(Math.random() * photos.length)];
         flashCount++;
         
-      if(flashCount >= maxFlashes) {
+        if(flashCount >= maxFlashes) {
             clearInterval(interval);
-            imgEl.src = "assets/photo1.jpg"; // Tambahkan assets/ di sini
+            imgEl.src = "photo5.jpg"; // Foto terbaik yang berhenti di akhir
             document.getElementById('finalText').classList.add('show');
             startConfetti();
             let vol = 1;
@@ -115,11 +113,10 @@ function startRapidSlideshow() {
                 else { clearInterval(fadeOut); }
             }, 500);
         }
-        }
-    }, 150); // Berganti setiap 150ms
+    }, 150);
 }
 
-// Simple JS Confetti
+// 8. Confetti
 function startConfetti() {
     const canvas = document.getElementById('confettiCanvas');
     const ctx = canvas.getContext('2d');
@@ -132,7 +129,7 @@ function startConfetti() {
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height - canvas.height,
             r: Math.random() * 6 + 2,
-            d: Math.random() * 100, // density
+            d: Math.random() * 100,
             color: ['#E8C76A', '#A8B89A', '#FFFDF8', '#FF4D6D'][Math.floor(Math.random() * 4)],
             tilt: Math.random() * 10
         });
