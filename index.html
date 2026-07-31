@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Piya 🌻</title>
   
-  <!-- Font Elegan: Playfair Display (Serif) & Poppins (Sans-serif) -->
+  <!-- Font Elegan: Playfair Display & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
 
   <!-- HALAMAN 1: HERO -->
   <section class="hero" id="hero">
-    <div class="hero-bg"></div> <!-- Background Blur Foto -->
+    <div class="hero-bg"></div> <!-- Background Foto 1 -->
     <div class="hero-content">
       <h3 class="subtitle">Happy Birthday</h3>
       <h1 class="title">Alifia 🌻</h1>
@@ -79,37 +79,38 @@
     <p>Dreams We'll Chase Together</p>
   </section>
 
-  <!-- HALAMAN 4: GALLERY -->
+  <!-- HALAMAN 4: GALLERY (5 FOTO) -->
   <section class="chapter gallery-section hidden">
     <h2>Memories Captured</h2>
     <div class="polaroid-gallery">
       <!-- Foto 1 -->
-      <div class="polaroid" onclick="openLightbox('assets/photo1.jpg', 'Semarang. Awal dari segala cerita kita.')">
-        <img src="assets/photo1.jpg" alt="Memory 1">
+      <div class="polaroid" onclick="openLightbox('photo1.jpg', 'Jogja. Hari dimana aku sadar, aku selalu nyaman kalau sama kamu.')">
+        <img src="photo1.jpg" alt="Memory 1">
         <p>Our Start.</p>
       </div>
       <!-- Foto 2 -->
-      <div class="polaroid" onclick="openLightbox('assets/photo2.jpg', 'Jogja. Hari dimana aku sadar, aku selalu nyaman kalau sama kamu.')">
-        <img src="assets/photo2.jpg" alt="Memory 2">
+      <div class="polaroid" onclick="openLightbox('photo2.jpg', 'Solo. Awal dari segala cerita kita.')">
+        <img src="photo2.jpg" alt="Memory 2">
         <p>Jogja.</p>
       </div>
       <!-- Foto 3 -->
-      <div class="polaroid" onclick="openLightbox('assets/photo3.jpg', 'Solo. Menikmati waktu berdua yang selalu terasa kurang.')">
-        <img src="assets/photo3.jpg" alt="Memory 3">
+      <div class="polaroid" onclick="openLightbox('photo3.jpg', 'Purworejo. Menikmati waktu berdua yang selalu terasa kurang.')">
+        <img src="photo3.jpg" alt="Memory 3">
         <p>Solo.</p>
       </div>
       <!-- Foto 4 -->
-      <div class="polaroid" onclick="openLightbox('assets/photo4.jpg', 'Senyummu di hari itu adalah favoritku.')">
-        <img src="assets/photo4.jpg" alt="Memory 4">
+      <div class="polaroid" onclick="openLightbox('photo4.jpg', 'Senyummu di hari itu adalah favoritku.')">
+        <img src="photo4.jpg" alt="Memory 4">
         <p>Our Smile.</p>
       </div>
       <!-- Foto 5 -->
-      <div class="polaroid" onclick="openLightbox('assets/photo5.jpg', 'Dan masih banyak lagi memori yang akan kita buat.')">
-        <img src="assets/photo5.jpg" alt="Memory 5">
+      <div class="polaroid" onclick="openLightbox('photo5.jpg', 'Dan masih banyak lagi memori yang akan kita buat bersama.')">
+        <img src="photo5.jpg" alt="Memory 5">
         <p>Our Future.</p>
       </div>
     </div>
   </section>
+
   <!-- HALAMAN 5: THINGS I LOVE -->
   <section class="chapter love-section hidden">
     <h2>Things I Love About You</h2>
@@ -161,10 +162,11 @@
     <div class="stars"></div>
     <h1>The Adventures We Haven't Lived Yet</h1>
     <div class="bucket-list">
-      <div class="list-item">☐ Menjelajahi Bali bersama</div>
-      <div class="list-item" onclick="openArsenalPopup()">☐ Menonton pertandingan Arsenal secara langsung ⚽ <span class="stadium-icon">🏟️</span></div>
-      <div class="list-item">☐ Membangun rumah kecil yang hangat</div>
-      <div class="list-item">☐ Tua bersama</div>
+      <div class="list-item">☐ Jalan Jalan di Bali</div>
+      <div class="list-item">☐ Malang yang sempat terlewatkan</div>
+      <div class="list-item" onclick="openArsenalPopup()">☐ Menonton pertandingan Arsenal ⚽ <span class="stadium-icon">🏟️</span></div>
+      <div class="list-item">☐ Punya Rumah</div>
+      <div class="list-item">☐ Tua bersama xixixixixi</div>
     </div>
     
     <div class="progress-container">
@@ -184,7 +186,6 @@
 
   <!-- HALAMAN 8: ENDING -->
   <section class="ending hidden" id="endingSection">
-    <!-- Slideshow Cepat -->
     <img id="rapidSlideshow" src="" class="rapid-img" style="display: none;">
     
     <div class="final-text hidden" id="finalText">
@@ -194,25 +195,21 @@
       <p>Today.<br>Tomorrow.<br>Always.</p>
       <p class="final-heart">❤️</p>
       
-      <!-- Surat Tersembunyi (Hidden Envelope) -->
+      <!-- Surat Tersembunyi -->
       <div class="hidden-envelope" onclick="openSecretLetter()">
         ✉️ Open when you're ready
       </div>
     </div>
   </section>
 
-  <!-- ALL POPUPS & MODALS -->
-  <!-- 1. Timeline Popup -->
+  <!-- POPUPS & MODALS -->
   <div id="timelinePopup" class="modal"><div class="modal-content"><h3 id="tlTitle"></h3><p id="tlDesc"></p><button onclick="closeModal('timelinePopup')">Close</button></div></div>
-  <!-- 2. Polaroid Lightbox -->
   <div id="lightbox" class="modal"><div class="modal-content"><img id="lbImg" src=""><p id="lbCap"></p><button onclick="closeModal('lightbox')">Close</button></div></div>
-  <!-- 3. Arsenal Popup -->
   <div id="arsenalPopup" class="modal"><div class="modal-content"><h3 style="color:#d10020;">Emirates Stadium 🏟️</h3><p>Status: 🔒 <strong>Locked</strong></p><p style="font-size:0.9rem;">Waiting for Rafly & Piya to unlock this dream.</p><button onclick="closeModal('arsenalPopup')">Close</button></div></div>
-  <!-- 4. Secret Letter Popup -->
-  <div id="secretPopup" class="modal"><div class="modal-content secret-paper"><p>Tulis surat panjangmu dari hati ke hati di sini, Rafly. Bebas sepanjang apapun...</p><button onclick="closeModal('secretPopup')">Tutup</button></div></div>
+  <div id="secretPopup" class="modal"><div class="modal-content secret-paper"><p>Hai Piya... (Jangan lupa ketik surat panjangmu di sini ya, Rafly!)</p><button onclick="closeModal('secretPopup')">Tutup</button></div></div>
 
   <!-- Audio -->
-  <audio id="music" loop><source src="assets/music.mp3" type="audio/mpeg"></audio>
+  <audio id="music" loop><source src="music.mp3" type="audio/mpeg"></audio>
 
   <!-- Confetti Canvas -->
   <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
